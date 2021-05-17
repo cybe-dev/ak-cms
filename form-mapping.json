@@ -1,0 +1,157 @@
+{
+  "basicInformation": [
+    {
+      "key": "clinicName",
+      "type": "string",
+      "name": "Nama Klinik"
+    },
+    {
+      "key": "address",
+      "type": "string",
+      "name": "Alamat"
+    },
+    {
+      "key": "welcomeText",
+      "type": "text",
+      "name": "Teks Selamat Datang"
+    },
+    {
+      "key": "description",
+      "type": "text",
+      "name": "Deskripsi"
+    },
+    {
+      "key": "operationalDay",
+      "type": "string",
+      "name": "Hari Operasional"
+    },
+    {
+      "key": "operationalHour",
+      "type": "string",
+      "name": "Jam Operasional"
+    },
+    {
+      "key": "facebook",
+      "type": "string",
+      "name": "Link Facebook"
+    },
+    {
+      "key": "instagram",
+      "type": "string",
+      "name": "Link Instagram"
+    },
+    {
+      "key": "whatsapp",
+      "type": "string",
+      "name": "No. Whatsapp"
+    },
+    {
+      "key": "logo",
+      "type": "upload",
+      "name": "Logo"
+    }
+  ],
+  "postType": [
+    {
+      "key": "kelebihan",
+      "name": "Kelebihan",
+      "icon": "faFeather",
+      "title": {
+        "name": "Judul",
+        "type": "string"
+      },
+      "thumbnail": {
+        "name": "Icon",
+        "type": [
+          {
+            "value": "default",
+            "label": "Default"
+          }
+        ]
+      },
+      "text": {
+        "name": "Deskripsi Singkat",
+        "type": "text"
+      }
+    },
+    {
+      "key": "layanan",
+      "name": "Layanan",
+      "icon": "faThList",
+      "title": {
+        "name": "Nama",
+        "type": "string"
+      },
+      "thumbnail": {
+        "name": "Icon",
+        "type": [
+          {
+            "value": "default",
+            "label": "Default"
+          }
+        ]
+      },
+      "text": {
+        "name": "Deskripsi Singkat",
+        "type": "text"
+      }
+    },
+    {
+      "key": "promo",
+      "name": "Promo",
+      "icon": "faTicketAlt",
+      "title": {
+        "name": "Judul",
+        "type": "string"
+      },
+      "thumbnail": {
+        "name": "Thumbnail",
+        "type": "upload"
+      },
+      "text": {
+        "name": "Deskripsi",
+        "type": "richtext"
+      }
+    },
+    {
+      "key": "testimoni",
+      "name": "Testimoni",
+      "icon": "faUsers",
+      "title": {
+        "name": "Dari",
+        "type": "string"
+      },
+      "thumbnail": {
+        "name": "Foto",
+        "type": "upload"
+      },
+      "text": {
+        "name": "Isi",
+        "type": "text"
+      }
+    },
+    {
+      "key": "halaman",
+      "name": "Halaman",
+      "icon": "faFileAlt",
+      "title": {
+        "name": "Judul",
+        "type": "string"
+      },
+      "thumbnail": {
+        "name": "Foto",
+        "type": "none"
+      },
+      "text": {
+        "name": "Isi",
+        "type": "richtext"
+      }
+    }
+  ],
+  "gallery": [
+    {
+      "for": "layanan",
+      "name": "Galeri"
+    }
+  ]
+}

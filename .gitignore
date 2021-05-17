@@ -1,0 +1,13 @@
+.env
+config/config.json
+node_modules
+public/images/basic/*
+public/images/gallery/*
+public/images/root/*
+public/images/temp/*
+public/images/thumbnail/*
+!public/images/basic/.gitkeep
+!public/images/gallery/.gitkeep
+!public/images/root/.gitkeep
+!public/images/temp/.gitkeep
+!public/images/thumbnail/.gitkeep
