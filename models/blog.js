@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   blog.init(
     {
+      thumbnail: {
+        type: DataTypes.STRING,
+      },
       title: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -25,6 +28,16 @@ module.exports = (sequelize, DataTypes) => {
       body: {
         allowNull: false,
         type: DataTypes.TEXT,
+        set(value) {
+          const regex = /<img\b[^>]+?src\s*=\s*['"]?([^\s'"?#>]+)/;
+          const match = regex.exec(value);
+          if (match) {
+            this.setDataValue("thumbnail", match[1]);
+          } else {
+            this.setDataValue("thumbnail", null);
+          }
+          this.setDataValue("body", value);
+        },
       },
       categoryId: {
         allowNull: true,

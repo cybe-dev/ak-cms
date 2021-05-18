@@ -31,7 +31,7 @@ app.use("/api/blog", blog);
 
 app.use(express.static("public"));
 
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 

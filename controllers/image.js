@@ -14,7 +14,9 @@ module.exports.addImage = (req, res) => {
     }
 
     responseMock.success(res, 200, "Upload success", {
-      url: req.file.path,
+      url: req.file.path
+        .replace(/\\/g, "/")
+        .replace("public", process.env.BASE_URL),
     });
   });
 };

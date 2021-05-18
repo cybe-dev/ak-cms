@@ -2,12 +2,24 @@
 
 const responseMock = require("../helpers/response-mock");
 const db = require("../models");
+const Sequelize = require("sequelize");
 
 module.exports.getById = (req, res) => {
   const { id } = req.params;
 
   db.blog
-    .findByPk(id)
+    .findOne({
+      where: {
+        id,
+      },
+      include: [
+        {
+          model: db.blog_category,
+          as: "category",
+          attributes: ["id", "name", "slug"],
+        },
+      ],
+    })
     .then((result) => {
       if (result) {
         responseMock.success(res, 200, "Blog successfully showed", result);
@@ -28,6 +40,13 @@ module.exports.getBySlug = (req, res) => {
       where: {
         slug,
       },
+      include: [
+        {
+          model: db.blog_category,
+          as: "category",
+          attributes: ["id", "name", "slug"],
+        },
+      ],
     })
     .then((result) => {
       if (result) {
@@ -42,8 +61,35 @@ module.exports.getBySlug = (req, res) => {
 };
 
 module.exports.category = (req, res) => {
+  const { notnull = false } = req.query;
+  const findObject = {
+    include: [
+      {
+        model: db.blog,
+        as: "blogs",
+        attributes: [],
+      },
+    ],
+  };
+
+  if (notnull) {
+    findObject.attributes = [
+      "id",
+      "name",
+      "slug",
+      [Sequelize.fn("COUNT", Sequelize.col("blogs.id")), "blogCount"],
+      "createdAt",
+      "updatedAt",
+    ];
+    findObject.having = {
+      blogCount: {
+        [Sequelize.Op.gt]: 0,
+      },
+    };
+    findObject.group = ["categoryId"];
+  }
   db.blog_category
-    .findAll()
+    .findAll(findObject)
     .then((result) => {
       responseMock.success(
         res,
@@ -58,7 +104,28 @@ module.exports.category = (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
-  const { offset = 0, limit = 10, category } = req.query;
+  const { offset = 0, limit = 10, category, q } = req.query;
+  const findObject = {
+    attributes: [
+      "id",
+      "title",
+      "slug",
+      "thumbnail",
+      "categoryId",
+      "createdAt",
+      "updatedAt",
+    ],
+    include: [
+      {
+        model: db.blog_category,
+        as: "category",
+        attributes: ["id", "name", "slug"],
+      },
+    ],
+    order: [["createdAt", "DESC"]],
+    offset: parseInt(offset),
+    limit: parseInt(limit) > 50 ? 50 : parseInt(limit),
+  };
 
   if (category) {
     let getCategory;
@@ -73,26 +140,21 @@ module.exports.index = async (req, res) => {
       responseMock.error(res, 404, "Category is not found");
       return;
     }
+
+    findObject.where = {
+      categoryId: category,
+    };
+  }
+
+  if (q) {
+    findObject.where = {
+      title: {
+        [Sequelize.Op.like]: `%${q}%`,
+      },
+    };
   }
   db.blog
-    .findAndCountAll({
-      attributes: [
-        "id",
-        "title",
-        "slug",
-        "categoryId",
-        "createdAt",
-        "updatedAt",
-      ],
-      where: category
-        ? {
-            categoryId: category,
-          }
-        : undefined,
-      order: [["createdAt", "DESC"]],
-      offset: parseInt(offset),
-      limit: parseInt(limit) > 50 ? 50 : parseInt(limit),
-    })
+    .findAndCountAll(findObject)
     .then((result) => {
       responseMock.success(res, 200, "Blog successfully showed", result);
     })
@@ -216,6 +278,7 @@ module.exports.post = async (req, res) => {
     });
   } catch (e) {
     responseMock.error(res);
+    console.log(e);
     return;
   }
 
