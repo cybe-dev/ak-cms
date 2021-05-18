@@ -11,6 +11,11 @@
       "name": "Alamat"
     },
     {
+      "key": "gmaps",
+      "type": "string",
+      "name": "Link Google Maps"
+    },
+    {
       "key": "welcomeText",
       "type": "text",
       "name": "Teks Selamat Datang"
@@ -49,6 +54,11 @@
       "key": "logo",
       "type": "upload",
       "name": "Logo"
+    },
+    {
+      "key": "frontImage",
+      "type": "upload",
+      "name": "Gambar Depan"
     }
   ],
   "postType": [
