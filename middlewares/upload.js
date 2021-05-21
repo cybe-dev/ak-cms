@@ -28,9 +28,17 @@ const allowExtensionRegex = (regex) => {
   };
 };
 
-const uploader = (name, path, multiple = false, limit = 3) => {
+const uploader = (
+  name,
+  path,
+  multiple = false,
+  limit = 3,
+  extension = "gif|jpg|jpeg|tiff|png|ico"
+) => {
   const storage = pathTo(path);
-  const fileFilter = allowExtensionRegex(/[\/.](gif|jpg|jpeg|tiff|png)$/i);
+  const fileFilter = allowExtensionRegex(
+    new RegExp(`[\/.](${extension})$`, "i")
+  );
   if (multiple) {
     if (Array.isArray(name)) {
       console.log("pake yang ini");

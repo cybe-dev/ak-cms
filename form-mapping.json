@@ -54,11 +54,6 @@
       "key": "logo",
       "type": "upload",
       "name": "Logo"
-    },
-    {
-      "key": "frontImage",
-      "type": "upload",
-      "name": "Gambar Depan"
     }
   ],
   "postType": [
@@ -74,8 +69,44 @@
         "name": "Icon",
         "type": [
           {
-            "value": "default",
-            "label": "Default"
+            "label": "Default",
+            "value": "default"
+          },
+          {
+            "label": "Dental Care",
+            "value": "dentalCare"
+          },
+          {
+            "label": "Tooth",
+            "value": "tooth"
+          },
+          {
+            "label": "Tooth 2",
+            "value": "tooth2"
+          },
+          {
+            "label": "Dental Veneer",
+            "value": "dentalVeneer"
+          },
+          {
+            "label": "Dental Insurance",
+            "value": "dentalInsurance"
+          },
+          {
+            "label": "Pair of Molars",
+            "value": "pairOfMolars"
+          },
+          {
+            "label": "Dentist Chair",
+            "value": "dentistChair"
+          },
+          {
+            "label": "Braces",
+            "value": "braces"
+          },
+          {
+            "label": "Dental Checkup",
+            "value": "dentalCheckup"
           }
         ]
       },
@@ -96,8 +127,44 @@
         "name": "Icon",
         "type": [
           {
-            "value": "default",
-            "label": "Default"
+            "label": "Default",
+            "value": "default"
+          },
+          {
+            "label": "Dental Care",
+            "value": "dentalCare"
+          },
+          {
+            "label": "Tooth",
+            "value": "tooth"
+          },
+          {
+            "label": "Tooth 2",
+            "value": "tooth2"
+          },
+          {
+            "label": "Dental Veneer",
+            "value": "dentalVeneer"
+          },
+          {
+            "label": "Dental Insurance",
+            "value": "dentalInsurance"
+          },
+          {
+            "label": "Pair of Molars",
+            "value": "pairOfMolars"
+          },
+          {
+            "label": "Dentist Chair",
+            "value": "dentistChair"
+          },
+          {
+            "label": "Braces",
+            "value": "braces"
+          },
+          {
+            "label": "Dental Checkup",
+            "value": "dentalCheckup"
           }
         ]
       },
@@ -155,6 +222,21 @@
       "text": {
         "name": "Isi",
         "type": "richtext"
+      }
+    },
+    {
+      "key": "slider",
+      "name": "Slider",
+      "icon": "faFileAlt",
+      "title": {
+        "name": "Judul",
+        "type": "string"
+      },
+      "thumbnail": {
+        "type": "upload"
+      },
+      "text": {
+        "type": "none"
       }
     }
   ],
